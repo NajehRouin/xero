@@ -2,7 +2,7 @@
 Xero app
 
 
-![Alt text](Capture.png?raw=true "Title")
+
 
 ## install node_module and start project 
 
