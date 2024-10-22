@@ -13,7 +13,7 @@ const App: React.FC = () => {
     setError(null);
 
     try {
-       await connectToXero();
+      await connectToXero();
       const tenants = await getTenants();
       const balanceSheet = await fetchBalanceSheet();
 
@@ -27,9 +27,9 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">
+      <div className="text-3xl font-bold mb-4 text-gray-800">
         Xero Integration
-      </h1>
+      </div>
       <button
         onClick={handleConnect}
         className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 hover:bg-blue-700"
@@ -42,7 +42,7 @@ const App: React.FC = () => {
 
       {data && (
         <div className="mt-6 w-full max-w-2xl  p-4">
-          <BalanceSheetTable report={data.balanceSheet.Reports[0]} />
+          <BalanceSheetTable report={data?.balanceSheet?.Reports[0]} />
         </div>
       )}
     </div>

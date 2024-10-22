@@ -1,6 +1,6 @@
 const express=require('express')
 const axios=require('axios')
-const open=require('open')
+
 const dotenv=require('dotenv')
 dotenv.config();
 
@@ -15,7 +15,7 @@ let tenantId = '';
  */
 router.get('/connect', async (req, res) => {
   const authUrl = `https://login.xero.com/identity/connect/authorize?response_type=code&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=offline_access accounting.reports.read&state=12345`;
-
+  const open = (await import('open')).default;
   await open(authUrl); // Opens the URL in the browser
   res.send('Redirecting to Xero for authorization...');
 });
@@ -26,6 +26,7 @@ router.get('/connect', async (req, res) => {
  */
 router.get('/callback', async (req, res) => {
   const authCode = req.query.code;
+  
 
   try {
     const response = await axios.post(
@@ -41,6 +42,8 @@ router.get('/callback', async (req, res) => {
     );
 
     accessToken = response.data.access_token;
+
+
  
     res.send('Successfully authenticated! You can now fetch data from Xero.');
   } catch (error) {
