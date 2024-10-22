@@ -1,8 +1,6 @@
 # Xero app
 Xero app
 
-
-
 ## install node_module and start project 
 
 ```bash
